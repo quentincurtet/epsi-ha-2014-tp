@@ -14,4 +14,4 @@ RUN echo "<h1>Hello World</h1>" > /var/www/index.html
 ADD nginx.conf /etc/nginx/
 
 EXPOSE 80
-CMD service nginx start
+CMD nginx -c /etc/nginx/nginx.conf
