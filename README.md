@@ -56,8 +56,14 @@ Que faire ?
 -----------
 
 L'objectif est de pouvoir lancer la VM vagrant présente dans ce dépôt.
-Deux actions une fois vos pré-requis OK :
-* Lancer la VM vagrant :
+* Pour commencer, il faut "cloner" le dépôt git :
+```
+> cd <VOTRE REPERTOIRE DE TRAVAIL>
+> git clone https://github.com/dduportal/epsi-ha-2014-tp
+[...]
+> cd epsi-ha-2014-tp
+```
+* Ensuite, on démarre la VM (avec configuration automatique) :
 ```
 > vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
@@ -70,17 +76,30 @@ the guest additions and repackage the box to continue.
 This is not an error message; everything may continue to work properly,
 in which case you may ignore this message.
 ```
-* Se connecter dans la VM et lancer un containeur Docker :
+* La VM a démarré, on s'y connecte en SSH et on télécharge une image ubuntu de base pour docker :
 ```
 > vagrant ssh
+[...]
+   ______                ____  _____
+  / ____/___  ________  / __ \/ ___/
+ / /   / __ \/ ___/ _ \/ / / /\__ \
+/ /___/ /_/ / /  /  __/ /_/ /___/ /
+\____/\____/_/   \___/\____//____/
+core@localhost ~ $ docker pull ubuntu
+[...]
+```
+* On teste cette image en mode one-shot puis en mode interactif (exit pour sortir)
+```
+core@localhost ~ $ docker run ubuntu echo OK
+OK 
+core@localhost ~ $ docker run -t -i ubuntu bash
 ...
-[une jolie baleine en ASCII-Art]
+bash$ exit
 ...
-docker@boot2docker:~$ sudo docker run -t -i ubuntu bash
+```
+* On sort de la VM et on la suspend :
+```
+core@localhost ~ $ exit
 ...
-bash$ logout
-...
-docker@boot2docker:~$ exit
-...
-> vagrant destroy -f
+> vagrant suspend
 ```
