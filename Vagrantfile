@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.network :forwarded_port, guest: 80, host: 5080, auto_correct: true
-  config.vm.network :forwarded_port, guest: 8080, host: 8080, auto_correct: true
+  config.vm.network :forwarded_port, guest: 4080, host: 4080, auto_correct: true
   config.vm.network :forwarded_port, guest: 5432, host: 5432, auto_correct: true
 
   config.vm.provision "shell", privileged: false, path: "provision.sh"
